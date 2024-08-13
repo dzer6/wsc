@@ -1,0 +1,33 @@
+{:postgres           {:server-name              "localhost"
+                      :port-number              15457
+                      :database-name            "postgres"
+                      :username                 "postgres"
+                      :password                 "postgres"
+                      :leak-detection-threshold 0}
+
+ :health             {:postgres {:check-period-ms 60000}
+                      :camel    {:check-period-ms 60000}}
+
+ :dev-mode           false
+
+ :ingestion-pipeline {:source-folder-path "target/inbound"}
+
+ :langchain          {:embedding-model {:url  "http://localhost:11434"
+                                        :name "llama3.1"}
+                      :embedding-store {:dimension 4096}}
+
+ :web                {:server {:host "0.0.0.0"
+                               :port 8080}}
+
+ :cors               {:allowed-origins "*"
+                      :allowed-headers "X-Requested-With,Content-Type,Cache-Control,Origin,Accept,Authorization,traceparent"}
+
+ :feature            {:database    {:postgres                {:turn-on true}
+                                    :print-queries           {:turn-on true}
+                                    :run-migrations-on-start {:turn-on true}}
+                      :langchain   {:embedding-model {:turn-on true}
+                                    :embedding-store {:turn-on true}}
+                      :debugger    {:camel {:turn-on true}}
+                      :logging     {:camel-tracer {:turn-on true}}
+                      :monitoring  {:open-telemetry {:turn-on true}}
+                      :camel-route {:data-ingestion-pipeline {:turn-on true}}}}
