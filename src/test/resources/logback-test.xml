@@ -21,7 +21,7 @@
     <logger name="next.jdbc" level="TRACE"/>
     <logger name="hugsql" level="TRACE"/>
     <logger name="base" level="DEBUG"/>
-    <logger name="wiki-stem" level="DEBUG"/>
+    <logger name="wiki-stem-corpus" level="DEBUG"/>
 
     <logger name="org.eclipse.jetty" level="INFO"/>
 
