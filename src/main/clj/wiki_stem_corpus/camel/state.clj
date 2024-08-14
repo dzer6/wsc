@@ -14,20 +14,12 @@
            (org.apache.camel.impl DefaultCamelContext)
            (org.apache.camel.impl.debugger DefaultDebugger)
            (org.apache.camel.impl.health DefaultHealthCheckRegistry RoutesHealthCheckRepository)
-           (org.apache.camel.opentelemetry OpenTelemetryTracer)
            (org.apache.camel.spi PropertiesComponent)))
 
 ;;;
 
 (defonce context (atom nil))
 (defonce components-registry (atom nil))
-
-;;;
-
-(defn init-open-telemetry [context]
-  (let [otel-tracer (OpenTelemetryTracer.)]
-    (log/info "Initialize OpenTelemetryTracer for Camel...")
-    (.init otel-tracer context)))
 
 ;;;
 
@@ -66,9 +58,6 @@
 
     (when (config/feature-on? @app-config/holder :debugger :camel)
       (.setDebugger context (DefaultDebugger.)))
-
-    (when (config/feature-on? @app-config/holder :monitoring :open-telemetry)
-      (init-open-telemetry context))
 
     (when (config/feature-on? @app-config/holder :logging :camel-tracer)
       (.setTracingStandby context true)

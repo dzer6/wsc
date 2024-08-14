@@ -14,7 +14,6 @@
                  [org.apache.camel/camel-http ~camel-version]
                  [org.apache.camel/camel-sql ~camel-version]
                  [org.apache.camel/camel-zipfile ~camel-version]
-                 [org.apache.camel/camel-opentelemetry ~camel-version]
                  [org.apache.camel/camel-endpointdsl ~camel-version]
 
                  [dev.langchain4j/langchain4j "0.33.0"]

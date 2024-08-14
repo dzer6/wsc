@@ -10,7 +10,6 @@
 
 (def camel {:feature {:debugger    {:camel common/TurnOn}
                       :logging     {:camel-tracer common/TurnOn}
-                      :monitoring  {:open-telemetry common/TurnOn}
                       :camel-route {:data-ingestion-pipeline common/TurnOn}}})
 
 (def health {:health {:postgres {:check-period-ms s/Int}

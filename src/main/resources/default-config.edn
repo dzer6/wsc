@@ -29,5 +29,4 @@
                                     :embedding-store {:turn-on true}}
                       :debugger    {:camel {:turn-on true}}
                       :logging     {:camel-tracer {:turn-on true}}
-                      :monitoring  {:open-telemetry {:turn-on true}}
                       :camel-route {:data-ingestion-pipeline {:turn-on true}}}}
