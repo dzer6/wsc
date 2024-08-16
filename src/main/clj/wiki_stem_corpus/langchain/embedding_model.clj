@@ -1,18 +1,11 @@
 (ns wiki-stem-corpus.langchain.embedding-model
   (:require [base.configuration.api :as config]
-            [wiki-stem-corpus.config :as app-config]
             [clojure.tools.logging :as log]
-            [mount.core :as mount])
-  (:import (dev.langchain4j.data.segment TextSegment)
-           (dev.langchain4j.model.ollama OllamaEmbeddingModel)))
+            [mount.core :as mount]
+            [wiki-stem-corpus.config :as app-config])
+  (:import (dev.langchain4j.model.ollama OllamaEmbeddingModel)))
 
 (defonce holder (atom nil))
-
-;;;
-
-(defn embed [text]
-  (some-> @holder
-          (.embed (TextSegment/from text))))
 
 ;;;
 
