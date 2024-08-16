@@ -36,7 +36,7 @@
                              (.setUseMaps true)
                              (.setLazyLoad true))))
 
-(defn enqueue-operation-request-route []
+(defn data-ingestion-route []
   (c/route-builder (c/from (endpoint/file (config/get @app-config/holder :ingestion-pipeline :source-folder-path)))
                    (c/route-id data-ingestion-pipeline-route-id)
 
@@ -62,7 +62,7 @@
     (signals/run-or-die
       mount/stop
       (c/add-routes @state/context
-                    (enqueue-operation-request-route)))
+                    (data-ingestion-route)))
     (reset! started? true)))
 
 (defn stop! []
