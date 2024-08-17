@@ -1,0 +1,20 @@
+@startuml
+
+package "Docker Compose Infrastructure" #f3e4c8 {
+
+    component "Ollama\nInitializer" as ollama_init #ff6f00
+    component "Ollama\n(LLM manager)" as ollama #518de4
+    component "Microservice" as wsc_microservice #fa8072
+    database "Postgres"as postgres_service #ffdb58
+
+    ollama_init -down- ollama
+    ollama -down- wsc_microservice
+    wsc_microservice -down- postgres_service
+
+    note right of ollama_init #d3d3d3: Starts on Docker Compose start\nand requests Ollama\nto download LLM
+    note right of wsc_microservice #d3d3d3: Ingests any number of textual documents,\nmakes embedding via LLM,\npersists embeddings in a vector database,\nand provides REST API\nfor searching similar documents
+    note right of ollama #d3d3d3: Manages an LLM\nand provides REST API for it
+    note right of postgres_service #d3d3d3: Vector database – persists data\nand performs similarity search
+}
+
+@enduml

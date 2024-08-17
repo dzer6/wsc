@@ -1,0 +1,26 @@
+@startuml
+
+box "User System" #a0bcd0
+    actor User
+end box
+
+box "Microservice" #afeadc
+    participant "Data Ingestion Pipeline\n(Apache Camel route)" as Camel
+end box
+
+box "Docker" #ffdb58
+    participant "LLM" as LLM
+    database "Vector Database" as Postgres
+end box
+
+User -> Camel: Drop zip file into watched directory
+Camel -> Camel: Unzip file
+Camel -> Camel: Split CSV rows
+
+loop For each CSV row
+    Camel -> LLM: Generate Vector Embedding
+    LLM --> Camel: Return Embedding
+    Camel -> Postgres: Store Embedding and Metadata
+end
+
+@enduml

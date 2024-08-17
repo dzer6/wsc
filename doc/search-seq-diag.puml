@@ -1,0 +1,27 @@
+@startuml
+
+box "Browser" #a0bcd0
+    actor Client
+end box
+
+box "Microservice" #afeadc
+    participant "REST API" as API
+    participant "Embedding Module" as EM
+end box
+
+box "Docker" #ffdb58
+    participant "LLM" as LLM
+    database "Vector Database" as DB
+end box
+
+Client -> API: Send Search Request
+API -> EM: Generate Query Embedding
+EM -> LLM: Generate Embedding
+LLM --> EM: Return Embedding
+
+EM -> DB: Search for Similar Embeddings
+DB --> API: Return Results
+
+API --> Client: Return Similar Documents
+
+@enduml
